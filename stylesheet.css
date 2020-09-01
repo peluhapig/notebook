@@ -1,0 +1,10 @@
+.link_button{
+    background-color: gray;
+    border: 1px;
+    color: black;
+    padding: 5px 15px;
+    text-align: center;
+    font-size: 12px;
+    margin: 10px 2px;
+    cursor: pointer;
+}
