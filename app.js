@@ -8,17 +8,18 @@ var path = require('path');
 
 app.use(express.urlencoded());
 app.use(express.json());
-app.use('/assets', express.static('assets'))
+//app.use('/assets', express.static('assets'))
+app.use(express.static('assets'))
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 })
 //listening for the front page
-app.get('/login.html', function(req, res) {
-    res.sendFile(path.join(__dirname + '/login.html'));
+app.get('login.html', function(req, res) {
+    res.sendFile(path.join(__dirname + 'virtualnotebook/login.html'));
 })
 //listening for the admin login
 app.get('/user.html', function(req, res) {
-    res.sendFile(path.join(__dirname + '/user.html'));
+    res.sendFile(path.join(__dirname + 'virtualnotebook/user.html'));
 })
 //listening for the base user page
 
@@ -27,9 +28,9 @@ app.post('/', function(request,response){
     console.log(request.body.user.name);
     console.log(request.body.user.password);
     if (authorize(request.body.user.name,request.body.user.password)== true){
-        response.sendFile(path.join(__dirname + '/admin.html'));
+        response.sendFile(path.join(__dirname + 'virtualnotebook/admin.html'));
     }else{
-        response.sendFile(path.join(__dirname + '/login.html'));
+        response.sendFile(path.join(__dirname + 'virtualnotebook/login.html'));
     }
     
         
@@ -62,5 +63,11 @@ app.get('/folders', function(req,res){
         
 })
 
+app.get('/virtualnotebook', function(req,res){
+    res.sendFile(path.join(__dirname + '/virtualnotebook/virtualnotebook.html'))
+})
 
+app.get('/portfolio', function(req,res){
+    res.sendFile(path.join(__dirname + '/portfolio/portfolio.html'))
+})
 app.listen(80);
