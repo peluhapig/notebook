@@ -1,9 +1,10 @@
 var http = require('http');
 var fs = require('fs')
+var htmlparser2 = require('htmlparser2')
 const express = require('express')
 const app = express()
 var path = require('path');
-var csvfile = [['admin','12345'],['name','password']]
+
 
 
 app.get('/', function(req, res) {
@@ -50,6 +51,15 @@ function authorize(name, password){
     
     return(matches)
 }
+//login for admin
+app.get('/folders', function(req,res){
+    var file_arr = []
+    fs.readdirSync(path.join(__dirname + '/folders')).forEach(file =>
+        file_arr.push(file))
+        res.sendFile(path.join(__dirname + '/folderbasic.html'));
+        
+        
+})
 
 
-app.listen(3000);
+app.listen(80);
