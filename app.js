@@ -6,7 +6,9 @@ const app = express()
 var path = require('path');
 
 
-
+app.use(express.urlencoded());
+app.use(express.json());
+app.use('/assets', express.static('assets'))
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 })
@@ -20,8 +22,7 @@ app.get('/user.html', function(req, res) {
 })
 //listening for the base user page
 
-app.use(express.urlencoded());
-app.use(express.json());
+
 app.post('/', function(request,response){
     console.log(request.body.user.name);
     console.log(request.body.user.password);
